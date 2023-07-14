@@ -1,7 +1,9 @@
 package com.xloop.carservice;
 
 import java.util.List;
+import java.util.Optional;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@CrossOrigin("*")
 @RequestMapping("/car")
 public class CarController {
 
@@ -31,8 +34,9 @@ public class CarController {
         return repo.findAll();
     }
 
-    @DeleteMapping("/delete/{id}")
-    public void deleteCarById(@PathVariable int id){
-        repo.deleteById(id);
+    @GetMapping("/{id}")
+    public Car getCar(@PathVariable long id ){
+        return repo.findById(id).orElse(null);
     }
+
 }

@@ -16,12 +16,11 @@ import lombok.Setter;
 @Setter
 @Table(name = "cardetails")
 @NoArgsConstructor
-@AllArgsConstructor
 public class Car {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    private Long id;
 
     private String name;
 
@@ -31,5 +30,15 @@ public class Car {
     @Column(columnDefinition = "TEXT")
     private String long_dsrp;
     private String image;
-    private int rental_fee_per_day;
+    private long rental_fee_per_day;
+
+    public Car(String name, String short_dsrp, String long_dsrp, String image, long rental_fee_per_day){
+        this.name = name;
+        this.short_dsrp = short_dsrp;
+        this.long_dsrp = long_dsrp;
+        this.image = image;
+        this.rental_fee_per_day = rental_fee_per_day;
+
+
+    }
 }
